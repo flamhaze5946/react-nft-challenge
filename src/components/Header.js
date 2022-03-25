@@ -18,7 +18,7 @@ const Header = ({ setContractAddress }) => {
                 </div>
                 <input
                     className='searchInput'
-                    placeholder='Collection, item or user...'
+                    placeholder='Smart Contract Address'
                     onChange={(e) => {
                         let content = e.target.value
                         if (content)
