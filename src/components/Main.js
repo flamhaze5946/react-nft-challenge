@@ -1,10 +1,14 @@
 import './Main.css'
-import React from "react";
+import React, {useEffect, useState} from "react";
 import instagramLogo from '../assets/owner/instagram.png'
 import twitterLogo from '../assets/owner/twitter.png'
 import moreIcon from '../assets/owner/more.png'
 
-const Main = ({activePunk}) => {
+const Main = ({selectedPunk, punkListData}) => {
+    const [activePunk, setActivePunk] = useState(punkListData[0])
+    useEffect(() => {
+        setActivePunk(punkListData[selectedPunk])
+    }, [punkListData, selectedPunk])
     return (
         <div className='main'>
             <div className='mainContent'>
@@ -21,17 +25,16 @@ const Main = ({activePunk}) => {
                 <div className='punkDetails' style={{color: '#fff'}}>
                     <div className='title'>
                         {activePunk.name}
+                        <span className='itemNumber'>~#{activePunk.token_id}</span>
                     </div>
-                    <span className='itemNumber'>~#3</span>
-                </div>
-                <div className='owner'>
+                    <div className='owner'>
                     <div className='ownerImageContainer'>
-                        <img src={activePunk.image_url} alt=''/>
+                        <img src={activePunk.owner.profile_img_url} alt=''/>
                     </div>
                     <div className='ownerDetails'>
                         <div className='ownerNameAndHandle'>
-                            <div>0xaaa</div>
-                            <div className='ownerHandle'>@21123</div>
+                            <div>{activePunk.owner.address}</div>
+                            <div className='ownerHandle'>@flamhaze5946</div>
                         </div>
                         <div className='ownerLink'>
                             <img src={instagramLogo} alt=''/>
@@ -43,6 +46,7 @@ const Main = ({activePunk}) => {
                             <img src={moreIcon} alt=''/>
                         </div>
                     </div>
+                </div>
                 </div>
             </div>
         </div>
