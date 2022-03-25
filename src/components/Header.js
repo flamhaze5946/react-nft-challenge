@@ -27,7 +27,7 @@ const Header = ({ setContractAddress }) => {
                         }
                         else
                         {
-                            setContractAddress(Constants().DefaultContractAddress)
+                            setContractAddress(Constants().defaultContractAddress)
                         }
                     }} />
             </div>

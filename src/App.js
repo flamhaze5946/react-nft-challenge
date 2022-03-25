@@ -9,19 +9,18 @@ import Constants from './components/Constants'
 function App() {
     const [punkListData, setPunkListData] = useState([])
     const [selectedPunk, setSelectedPunk] = useState(0)
-    const [contractAddress, setContractAddress] = useState(Constants().DefaultContractAddress)
-    const emptyOpenseaData = {
-        'data': {
-            'assets': []
-        }
-    }
+    const constants = Constants()
+    const [contractAddress, setContractAddress] = useState(constants.defaultContractAddress)
 
     useEffect(() => {
         const getMyNfts = async () => {
             const openseaData = await axios.get(
-                'https://testnets-api.opensea.io/assets?asset_contract_address='
+                '/testnets-opensea/assets?asset_contract_address='
                 + contractAddress
-                + '&order_direction=asc'
+                + '&order_direction=asc',
+                () => {
+
+                }
             ).catch((error) => {
                 if (error.response)
                 {
@@ -37,7 +36,7 @@ function App() {
             }
             else
             {
-                setPunkListData(emptyOpenseaData)
+                setPunkListData(constants.emptyOpenseaData)
             }
         }
         return getMyNfts()
