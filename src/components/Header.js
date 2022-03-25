@@ -1,5 +1,5 @@
-import React from 'react'
 import './Header.css'
+import React from 'react'
 import punkLogo from '../assets/header/cryptopunk-logo.png'
 import searchIcon from '../assets/header/search.png'
 import themeSwitchIcon from '../assets/header/theme-switch.png'
