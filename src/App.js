@@ -36,7 +36,7 @@ function App() {
             }
             else
             {
-                setPunkListData(constants.emptyOpenseaData)
+                setPunkListData(constants.emptyOpenseaData.data.assets)
             }
         }
         return getMyNfts()
