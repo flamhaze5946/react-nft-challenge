@@ -4,7 +4,7 @@ import punkLogo from '../assets/header/cryptopunk-logo.png'
 import searchIcon from '../assets/header/search.png'
 import themeSwitchIcon from '../assets/header/theme-switch.png'
 
-const Header = () => {
+const Header = ({ setContractAddress }) => {
     return (
         <div className='header'>
             <div className='logoContainer'>
@@ -15,7 +15,12 @@ const Header = () => {
                 <div className='searchIconContainer'>
                     <img src={searchIcon} alt=''/>
                 </div>
-                <input className='searchInput' placeholder='Collection, item or user...'/>
+                <input
+                    className='searchInput'
+                    placeholder='Collection, item or user...'
+                    onChange={(e) => {
+                        setContractAddress(e.target.value)
+                    }} />
             </div>
 
             <div className='headerItems'>
