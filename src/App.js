@@ -13,31 +13,30 @@ function App() {
     const [contractAddress, setContractAddress] = useState(constants.defaultContractAddress)
 
     useEffect(() => {
+        var assets = constants.emptyOpenseaData.data.assets
         const getMyNfts = async () => {
             const openseaData = await axios.get(
                 '/testnets-opensea/assets?asset_contract_address='
                 + contractAddress
-                + '&order_direction=asc',
-                () => {
-
-                }
+                + '&order_direction=asc'
             ).catch((error) => {
                 if (error.response)
                 {
                     if (!(error.response.status).toString().startsWith('4'))
                     {
-                        throw error
+                        console.log(error)
                     }
                 }
             })
             if (openseaData)
             {
-                setPunkListData(openseaData.data.assets)
+                assets = openseaData.data.assets
             }
             else
             {
-                setPunkListData(constants.emptyOpenseaData.data.assets)
+                assets = constants.emptyOpenseaData.data.assets
             }
+            setPunkListData(assets)
         }
         return getMyNfts()
     }, [contractAddress])

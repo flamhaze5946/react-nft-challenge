@@ -5,7 +5,7 @@ import searchIcon from '../assets/header/search.png'
 import themeSwitchIcon from '../assets/header/theme-switch.png'
 import Constants from "./Constants";
 
-const Header = ({ setContractAddress }) => {
+const Header = ({setContractAddress}) => {
     return (
         <div className='header'>
             <div className='logoContainer'>
@@ -19,17 +19,17 @@ const Header = ({ setContractAddress }) => {
                 <input
                     className='searchInput'
                     placeholder='Smart Contract Address'
-                    onChange={(e) => {
-                        let content = e.target.value
-                        if (content)
-                        {
-                            setContractAddress(e.target.value)
+                    onKeyUp={(e) => {
+                        if (e.keyCode === 13) {
+                            let content = e.target.value
+                            if (content) {
+                                setContractAddress(e.target.value)
+                            } else {
+                                setContractAddress(Constants().defaultContractAddress)
+                            }
                         }
-                        else
-                        {
-                            setContractAddress(Constants().defaultContractAddress)
-                        }
-                    }} />
+                    }}
+                />
             </div>
 
             <div className='headerItems'>
