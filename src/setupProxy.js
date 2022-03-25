@@ -4,8 +4,9 @@ module.exports = (app) => {
     app.use(createProxyMiddleware(
         '/testnets-opensea', {
             pathRewrite: {
-                '^/testnets-opensea': ''
+                '^/testnets-opensea': '/'
             },
+            secure: true,
             target: 'https://testnets-api.opensea.io',
             changeOrigin: true
         }
