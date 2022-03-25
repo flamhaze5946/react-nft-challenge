@@ -4,11 +4,17 @@ import {useState, useEffect} from "react";
 import axios from "axios";
 import PunkList from "./components/PunkList";
 import Main from "./components/Main";
+import Constants from './components/Constants'
 
 function App() {
     const [punkListData, setPunkListData] = useState([])
     const [selectedPunk, setSelectedPunk] = useState(0)
-    const [contractAddress, setContractAddress] = useState('0xA3a8FccB2F8beb5bBd72c792637d3c319F24558c')
+    const [contractAddress, setContractAddress] = useState(Constants().DefaultContractAddress)
+    const emptyOpenseaData = {
+        'data': {
+            'assets': []
+        }
+    }
 
     useEffect(() => {
         const getMyNfts = async () => {
@@ -28,6 +34,10 @@ function App() {
             if (openseaData)
             {
                 setPunkListData(openseaData.data.assets)
+            }
+            else
+            {
+                setPunkListData(emptyOpenseaData)
             }
         }
         return getMyNfts()

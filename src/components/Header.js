@@ -3,6 +3,7 @@ import React from 'react'
 import punkLogo from '../assets/header/cryptopunk-logo.png'
 import searchIcon from '../assets/header/search.png'
 import themeSwitchIcon from '../assets/header/theme-switch.png'
+import Constants from "./Constants";
 
 const Header = ({ setContractAddress }) => {
     return (
@@ -19,7 +20,15 @@ const Header = ({ setContractAddress }) => {
                     className='searchInput'
                     placeholder='Collection, item or user...'
                     onChange={(e) => {
-                        setContractAddress(e.target.value)
+                        let content = e.target.value
+                        if (content)
+                        {
+                            setContractAddress(e.target.value)
+                        }
+                        else
+                        {
+                            setContractAddress(Constants().DefaultContractAddress)
+                        }
                     }} />
             </div>
 
